@@ -1,6 +1,11 @@
 //Import react into file
 import React from 'react';
 import axios from 'axios';
+<<<<<<< Updated upstream
+=======
+import { Row, Col } from 'react-bootstrap';
+import { LoginView } from '../login-view/login-view';
+>>>>>>> Stashed changes
 import {MovieCard} from '../movie-card/movie-card';
 import {MovieView} from '../movie-view/movie-view';
 //Exporting the MainView component makes it available for use by other components, modules, and files
@@ -41,6 +46,7 @@ class MainView extends React.Component {
         //Displays movie list
         //JSX
         return (
+<<<<<<< Updated upstream
             <div className="main-view">
             {selectedMovie
               ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
@@ -49,6 +55,22 @@ class MainView extends React.Component {
               ))
             }
           </div>
+=======
+            <Row className="main-view justify-content-md-center">
+                { selectedMovie
+                ? (
+                    <Col md={8}>
+                        <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
+                    </Col>  
+                )
+                : movies.map(movie => (
+                    <Col md={3}>
+                        <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) ;}}/>
+                    </Col>
+                    ))
+                }
+                </Row>  
+>>>>>>> Stashed changes
         );
     }
 }
