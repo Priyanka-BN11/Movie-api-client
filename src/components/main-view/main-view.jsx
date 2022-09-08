@@ -2,6 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import { LoginView } from '../login-view/login-view';
+import {Row, Col} from 'react-bootstrap';
 import {MovieCard} from '../movie-card/movie-card';
 import {MovieView} from '../movie-view/movie-view';
 //Exporting the MainView component makes it available for use by other components, modules, and files

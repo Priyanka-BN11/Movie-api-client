@@ -1,12 +1,4 @@
 import React from 'react';
-<<<<<<< Updated upstream
- export class MovieCard extends React.Component {
-    render() {
-        const {movie, onMovieClick } = this.props;
-        return <div className="movie-card" onClick={() => { onMovieClick(movie); }}>{movie.Title}</div>;
-    }
-}
-=======
 
 // import PropTypes from 'prop-types';
 import { Button, Card, Row, Col, Container, CardGroup } from 'react-bootstrap';
@@ -47,4 +39,4 @@ import Col from 'react-bootstrap/Col';
 //     }).isRequired,
 //     onMovieClick: PropTypes.func.isRequired
 //   };
->>>>>>> Stashed changes
+
