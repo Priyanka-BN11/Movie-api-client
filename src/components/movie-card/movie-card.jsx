@@ -2,9 +2,7 @@ import React from 'react';
 
 // import PropTypes from 'prop-types';
 import { Button, Card, Row, Col, Container, CardGroup } from 'react-bootstrap';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import {Card, Row, Col} from 'react-bootstrap';
  export class MovieCard extends React.Component {
     render() {
         const {movie, onMovieClick } = this.props;
