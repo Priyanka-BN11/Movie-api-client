@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import { Form, Button, Container, CardGroup, Row, Col, Card, Nav, Navbar } from 'react-bootstrap';
 // import { RegistrationView } from '../registration-view/registration-view';
 import './login-view.scss';
@@ -8,17 +9,28 @@ export function LoginView(props){
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      console.log(username, password);
-      /* Send a request to the server for authentication */
-      /* then call props.onLoggedIn(username) */
-       props.onLoggedIn(username);
-    };
-	const handleRegister = (e) => {
-		e.preventDefault();
-		console.log(username,password,email,birthday);
-		props.RegistrationView(username);
-	}
-  
+      //send a request to the server for authentication
+	
+
+	  axios.post('https://movie-app-priya.herokuapp.com/login',{},{
+		params:{
+		Username:username,
+		Password:password}
+	  })
+	  .then(response => {
+		const data = response.data;
+		props.onLoggedIn(data);
+	  })
+	  .catch(e => {
+		console.log(e,'no such user');
+	  });
+     };
+	// const handleRegister = (e) => {
+	// 	e.preventDefault();
+	// 	console.log(username,password,email,birthday);
+	// 	props.RegistrationView(username);
+	// }
+	
     return (
 		
 		<Container fluid>
@@ -29,7 +41,7 @@ export function LoginView(props){
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: '80px' }}
             navbarScroll
           >
             <Nav.Link href="#action1">Profile</Nav.Link>
@@ -58,10 +70,10 @@ export function LoginView(props){
 									<Form.Group controlId="formPassword">
 										<Form.Label>Password:</Form.Label>
 										<Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} required 
-										placeholder="Enter password" minlength="8"/>
+										placeholder="Enter password" minLength="8"/>
 									</Form.Group>
 									<Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>{' '}
-									<Button variant ="primary" onClick={handleRegister}>Register</Button>
+									<Button variant ="primary">Register</Button>
 								</Form>
 							</Card.Body>
 
@@ -74,3 +86,4 @@ export function LoginView(props){
       
     );
   }
+ 

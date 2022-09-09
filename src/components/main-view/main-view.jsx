@@ -19,15 +19,13 @@ class MainView extends React.Component {
     }
     componentDidMount(){
     // code executed right after the component is added to the DOM.
-        axios.get('https://movie-app-priya.herokuapp.com/movies')
-        .then(response => {
+        let accessToken = localStorage.getItem('token');
+        if(accessToken !== null){
             this.setState({
-                movies:response.data
+                user:localStorage.getItem('user')
             });
-        })
-        .catch(error => {
-            console.log(error);
-        });
+            this.getMovies(accessToken);
+        }
     }
     componentWillUnmount(){
     // code executed just before the moment the component gets removed from the DOM.
@@ -40,11 +38,36 @@ class MainView extends React.Component {
         });
     }
     /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
-    onLoggedIn(user) {
+    onLoggedIn(authData){
+        // console.log(authData);
         this.setState({
-          user
+            user: authData.user.Username
         });
-      }
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        this.getMovies(authData.token);
+    }
+    getMovies(token) {
+        axios.get('https://movie-app-priya.herokuapp.com/movies',{
+           headers: {'Authorization': `Bearer ${token}`} 
+        })
+        .then(response => {
+            //Assign the result to the state
+            this.setState({
+                movies:response.data
+            });
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+    }
+    onLoggedOut(){
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user:null
+        });
+    }
     render() {
         const { movies, selectedMovie, user} = this.state;
          /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
@@ -61,8 +84,8 @@ class MainView extends React.Component {
                     </Col>  
                 )
                 : movies.map(movie => (
-                    <Col md={3}>
-                        <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) ;}}/>
+                    <Col md={3}key={movie._id} >
+                        <MovieCard  movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) ;}}/>
                     </Col>
                     ))
                 }
