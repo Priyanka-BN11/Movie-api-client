@@ -28286,14 +28286,14 @@ class MainView extends (0, _reactDefault.default).Component {
         window.open("/", "_self");
     }
     handleFavorite = (movieId, action)=>{
-        const { username , favoriteMovies  } = this.state;
+        const { username , favoriteMovies: favoriteMovies1  } = this.state;
         const accessToken = localStorage.getItem("token");
         if (accessToken !== null && username !== null) {
             // Add MovieID to Favorites (local state & webserver)
             if (action === "add") {
                 this.setState({
                     favoriteMovies: [
-                        ...favoriteMovies,
+                        ...favoriteMovies1,
                         movieId
                     ]
                 });
@@ -28309,7 +28309,7 @@ class MainView extends (0, _reactDefault.default).Component {
             // Remove MovieID from Favorites (local state & webserver)
             } else if (action === "remove") {
                 this.setState({
-                    favoriteMovies: favoriteMovies.filter((id)=>id !== movieId)
+                    favoriteMovies: favoriteMovies1.filter((id)=>id !== movieId)
                 });
                 (0, _axiosDefault.default).delete(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`, {
                     headers: {
@@ -28457,7 +28457,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                             user: user,
                                             onBackClick: ()=>history.goBack(),
-                                            // favoriteMovies={favoriteMovies || []}
+                                            favoriteMovies: favoriteMovies || [],
                                             handleFavorite: this.handleFavorite,
                                             movies: movies
                                         }, void 0, false, void 0, void 0)
