@@ -1,7 +1,16 @@
+import axios from 'axios';
 import React from 'react'
 import { Link } from "react-router-dom";
 
- function FavoriteMovie(favoriteMovieList) {
+ function FavoriteMovie({favoriteMovieList}) {
+  const removeFav = (id) => {
+    let token = localStorage.getItem('token');
+    let url = `https://movie-app-priya.herokuapp.com/users/${localStorage.getItem('username')}/movies/${id}`;
+    axios.delete(url,{
+      headers: { Authorization: `Bearer ${accessToken}` },
+
+    })
+  }
   return (
     <div> 
         <h2>Favorite Movies</h2>

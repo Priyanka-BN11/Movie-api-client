@@ -1,6 +1,6 @@
 import React from 'react'
 
-function UserUpdate(handleSubmit, handleUpdate) {
+function UserUpdate(handleSubmit, handleUpdate, user) {
   return (
     <form className='profile-form' onSubmit={(e) => handleSubmit(e)}>
                 <h2>Want to change some info?</h2>

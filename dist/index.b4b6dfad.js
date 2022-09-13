@@ -28226,7 +28226,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
-var _navbar = require("../navbar/navbar");
+var _navbar = require("../Navbar/navbar");
 var _reactBootstrap = require("react-bootstrap");
 var _loginView = require("../login-view/login-view");
 var _profileView = require("../profile-view/profile-view");
@@ -28286,14 +28286,14 @@ class MainView extends (0, _reactDefault.default).Component {
         window.open("/", "_self");
     }
     handleFavorite = (movieId, action)=>{
-        const { username , favoriteMovies: favoriteMovies1  } = this.state;
+        const { username , favoriteMovies  } = this.state;
         const accessToken = localStorage.getItem("token");
         if (accessToken !== null && username !== null) {
             // Add MovieID to Favorites (local state & webserver)
             if (action === "add") {
                 this.setState({
                     favoriteMovies: [
-                        ...favoriteMovies1,
+                        ...favoriteMovies,
                         movieId
                     ]
                 });
@@ -28309,7 +28309,7 @@ class MainView extends (0, _reactDefault.default).Component {
             // Remove MovieID from Favorites (local state & webserver)
             } else if (action === "remove") {
                 this.setState({
-                    favoriteMovies: favoriteMovies1.filter((id)=>id !== movieId)
+                    favoriteMovies: favoriteMovies.filter((id)=>id !== movieId)
                 });
                 (0, _axiosDefault.default).delete(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`, {
                     headers: {
@@ -28457,7 +28457,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                             user: user,
                                             onBackClick: ()=>history.goBack(),
-                                            favoriteMovies: favoriteMovies || [],
+                                            // favoriteMovies={favoriteMovies || []}
                                             handleFavorite: this.handleFavorite,
                                             movies: movies
                                         }, void 0, false, void 0, void 0)
@@ -28494,7 +28494,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","react-router-dom":"cHIiW","../navbar/navbar":"bNPgg","react-bootstrap":"3AD9A","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../registration-view/registration-view":"3U8r7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../profile-view/profile-view":"2vVqf"}],"jo6P5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","react-router-dom":"cHIiW","react-bootstrap":"3AD9A","../login-view/login-view":"9YtA0","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../registration-view/registration-view":"3U8r7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../profile-view/profile-view":"2vVqf","../Navbar/navbar":"jVQl4"}],"jo6P5":[function(require,module,exports) {
 module.exports = require("./lib/axios");
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -34712,121 +34712,7 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"7EuwB"}],"bNPgg":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$8fd2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$8fd2.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "NavBar", ()=>NavBar);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactBootstrap = require("react-bootstrap");
-function NavBar({ user  }) {
-    const handleLogOut = (e)=>{
-        e.preventDefault();
-        localStorage.clear();
-        window.open("/", "_self");
-    };
-    const isAuth = ()=>{
-        if (typeof window == "undefined") return false;
-        if (localStorage.getItem("token")) return localStorage.getItem("token");
-        else return false;
-    };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
-        className: "main-nav",
-        sticky: "top",
-        bg: "dark",
-        expand: "lg",
-        variant: "dark",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
-            children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
-                    className: "navbar-logo",
-                    href: "/",
-                    children: "MovieApp"
-                }, void 0, false, {
-                    fileName: "src/components/navbar/navbar.jsx",
-                    lineNumber: 23,
-                    columnNumber: 17
-                }, this),
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Collapse, {
-                    id: "responsive-navbar-nav",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav), {
-                        className: "ml-auto",
-                        children: [
-                            isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                href: `/users/${user}`,
-                                children: user
-                            }, void 0, false, {
-                                fileName: "src/components/navbar/navbar.jsx",
-                                lineNumber: 27,
-                                columnNumber: 29
-                            }, this),
-                            isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                variant: "link",
-                                onClick: ()=>{
-                                    handleLogOut;
-                                },
-                                children: "Logout"
-                            }, void 0, false, {
-                                fileName: "src/components/navbar/navbar.jsx",
-                                lineNumber: 32,
-                                columnNumber: 29
-                            }, this),
-                            !isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                href: "/",
-                                children: "Sign-in"
-                            }, void 0, false, {
-                                fileName: "src/components/navbar/navbar.jsx",
-                                lineNumber: 36,
-                                columnNumber: 29
-                            }, this),
-                            !isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                                href: "/register",
-                                children: "Sign-up"
-                            }, void 0, false, {
-                                fileName: "src/components/navbar/navbar.jsx",
-                                lineNumber: 39,
-                                columnNumber: 29
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 25,
-                        columnNumber: 21
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/navbar/navbar.jsx",
-                    lineNumber: 24,
-                    columnNumber: 17
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/navbar/navbar.jsx",
-            lineNumber: 22,
-            columnNumber: 13
-        }, this)
-    }, void 0, false, {
-        fileName: "src/components/navbar/navbar.jsx",
-        lineNumber: 21,
-        columnNumber: 9
-    }, this);
-}
-_c = NavBar;
-var _c;
-$RefreshReg$(_c, "NavBar");
-
-  $parcel$ReactRefreshHelpers$8fd2.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3AD9A":[function(require,module,exports) {
+},{"react-is":"7EuwB"}],"3AD9A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -40548,14 +40434,20 @@ var _favoriteMovie = require("./favorite-movie");
 var _favoriteMovieDefault = parcelHelpers.interopDefault(_favoriteMovie);
 var _userUpdate = require("./user-update");
 var _userUpdateDefault = parcelHelpers.interopDefault(_userUpdate);
+var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
-function ProfileView(props) {
+function ProfileView({ movies  }) {
     _s();
-    const [user, setUser] = useState(props.user);
-    const [movies, setMovies] = useState(props.movies);
-    const [favouriteMovies, setFavouriteMovies] = useState([]);
+    const [user, setUser] = (0, _react.useState)({
+        Username: "",
+        Email: "",
+        FavoriteMovie: []
+    });
     const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
+    const favoriteMovieList = movies.filter((movies)=>{
+        return user.FavoriteMovie.includes(movies._id);
+    });
     const getUser = ()=>{
         (0, _axiosDefault.default).get(`https://movie-app-priya.herokuapp.com/users/${Username}`, {
             headers: {
@@ -40564,11 +40456,12 @@ function ProfileView(props) {
         }).then((response)=>{
             //Assign the result to the state
             setUser(response.data);
-            setFavouriteMovies(response.data.FavouriteMovies);
+            setFavouriteMovie(response.data.FavouriteMovie);
         }).catch((error)=>console.log(error));
     };
     const handleSubmit = (e)=>{};
-    const removeFav = (id)=>{};
+    // const removeFav = (id) => {
+    // };
     const handleUpdate = (e)=>{
         (0, _axiosDefault.default).put(`https://movie-app-priya.herokuapp.com/users/${Username}`, {
             Username: this.state.Username,
@@ -40597,41 +40490,69 @@ function ProfileView(props) {
         });
     };
     (0, _react.useEffect)(()=>{
-        getUser();
+        let isMounted = true;
+        isMounted && getUser();
+        return ()=>{
+            isMounted = false;
+        };
     }, []);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfoDefault.default), {
-                username: user.Username,
-                email: user.Email
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 73,
-                columnNumber: 12
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMovieDefault.default), {
-                favoriteMovieList: favoriteMovieList
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 74,
-                columnNumber: 13
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userUpdateDefault.default), {
-                handleSubmit: handleSubmit,
-                handleUpdate: handleUpdate
-            }, void 0, false, {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 75,
-                columnNumber: 13
-            }, this)
-        ]
-    }, void 0, true, {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userInfoDefault.default), {
+                        username: user.Username,
+                        email: user.Email
+                    }, void 0, false, {
+                        fileName: "src/components/profile-view/profile-view.jsx",
+                        lineNumber: 87,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 86,
+                    columnNumber: 17
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _favoriteMovieDefault.default), {
+                        favoriteMovieList: favoriteMovieList
+                    }, void 0, false, {
+                        fileName: "src/components/profile-view/profile-view.jsx",
+                        lineNumber: 90,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 89,
+                    columnNumber: 17
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _userUpdateDefault.default), {
+                        user: user,
+                        setUser: setUser
+                    }, void 0, false, {
+                        fileName: "src/components/profile-view/profile-view.jsx",
+                        lineNumber: 93,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/profile-view.jsx",
+                    lineNumber: 92,
+                    columnNumber: 17
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/profile-view/profile-view.jsx",
+            lineNumber: 85,
+            columnNumber: 13
+        }, this)
+    }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 72,
+        lineNumber: 84,
         columnNumber: 9
     }, this);
 }
-_s(ProfileView, "uqu6m9zirxG07+LvapKmfoyDg6c=");
+_s(ProfileView, "k7g4YwUT7iIXGQePYbQs69tI5O8=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");
@@ -40641,7 +40562,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","./user-info":"66eot","./favorite-movie":"jnrrw","./user-update":"hucfh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"66eot":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","./user-info":"66eot","./favorite-movie":"jnrrw","./user-update":"hucfh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A"}],"66eot":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -40703,17 +40624,28 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
-function FavoriteMovie(favoriteMovieList) {
+function FavoriteMovie({ favoriteMovieList  }) {
+    const removeFav = (id)=>{
+        let token = localStorage.getItem("token");
+        let url = `https://movie-app-priya.herokuapp.com/users/${localStorage.getItem("username")}/movies/${id}`;
+        (0, _axiosDefault.default).delete(url, {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                 children: "Favorite Movies"
             }, void 0, false, {
                 fileName: "src/components/profile-view/favorite-movie.jsx",
-                lineNumber: 7,
+                lineNumber: 16,
                 columnNumber: 9
             }, this),
             favoriteMovieList.map((movies)=>{
@@ -40723,7 +40655,7 @@ function FavoriteMovie(favoriteMovieList) {
                             src: movies.ImagePath
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movie.jsx",
-                            lineNumber: 11,
+                            lineNumber: 20,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -40732,12 +40664,12 @@ function FavoriteMovie(favoriteMovieList) {
                                 children: movies.Title
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/favorite-movie.jsx",
-                                lineNumber: 13,
+                                lineNumber: 22,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movie.jsx",
-                            lineNumber: 12,
+                            lineNumber: 21,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -40746,20 +40678,20 @@ function FavoriteMovie(favoriteMovieList) {
                             children: "Remove from list"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/favorite-movie.jsx",
-                            lineNumber: 15,
+                            lineNumber: 24,
                             columnNumber: 13
                         }, this)
                     ]
                 }, movies._id, true, {
                     fileName: "src/components/profile-view/favorite-movie.jsx",
-                    lineNumber: 10,
+                    lineNumber: 19,
                     columnNumber: 13
                 }, this);
             })
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/favorite-movie.jsx",
-        lineNumber: 6,
+        lineNumber: 15,
         columnNumber: 5
     }, this);
 }
@@ -40773,7 +40705,7 @@ $RefreshReg$(_c, "FavoriteMovie");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hucfh":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5"}],"hucfh":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1f8c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -40785,7 +40717,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-function UserUpdate(handleSubmit, handleUpdate) {
+function UserUpdate(handleSubmit, handleUpdate, user) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
         className: "profile-form",
         onSubmit: (e)=>handleSubmit(e),
@@ -40863,6 +40795,120 @@ $RefreshReg$(_c, "UserUpdate");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequireed74")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jVQl4":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$be5a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$be5a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "NavBar", ()=>NavBar);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+function NavBar({ user  }) {
+    const handleLogOut = (e)=>{
+        e.preventDefault();
+        localStorage.clear();
+        window.open("/", "_self");
+    };
+    const isAuth = ()=>{
+        if (typeof window == "undefined") return false;
+        if (localStorage.getItem("token")) return localStorage.getItem("token");
+        else return false;
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
+        className: "main-nav",
+        sticky: "top",
+        bg: "dark",
+        expand: "lg",
+        variant: "dark",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
+                    className: "navbar-logo",
+                    href: "/",
+                    children: "MovieApp"
+                }, void 0, false, {
+                    fileName: "src/components/Navbar/navbar.jsx",
+                    lineNumber: 23,
+                    columnNumber: 17
+                }, this),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Collapse, {
+                    id: "responsive-navbar-nav",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav), {
+                        className: "ml-auto",
+                        children: [
+                            isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                href: `/users/${user}`,
+                                children: user
+                            }, void 0, false, {
+                                fileName: "src/components/Navbar/navbar.jsx",
+                                lineNumber: 27,
+                                columnNumber: 29
+                            }, this),
+                            isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                variant: "link",
+                                onClick: (e)=>{
+                                    handleLogOut(e);
+                                },
+                                children: "Logout"
+                            }, void 0, false, {
+                                fileName: "src/components/Navbar/navbar.jsx",
+                                lineNumber: 32,
+                                columnNumber: 29
+                            }, this),
+                            !isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                href: "/",
+                                children: "Sign-in"
+                            }, void 0, false, {
+                                fileName: "src/components/Navbar/navbar.jsx",
+                                lineNumber: 36,
+                                columnNumber: 29
+                            }, this),
+                            !isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
+                                href: "/register",
+                                children: "Sign-up"
+                            }, void 0, false, {
+                                fileName: "src/components/Navbar/navbar.jsx",
+                                lineNumber: 39,
+                                columnNumber: 29
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Navbar/navbar.jsx",
+                        lineNumber: 25,
+                        columnNumber: 21
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/Navbar/navbar.jsx",
+                    lineNumber: 24,
+                    columnNumber: 17
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/Navbar/navbar.jsx",
+            lineNumber: 22,
+            columnNumber: 13
+        }, this)
+    }, void 0, false, {
+        fileName: "src/components/Navbar/navbar.jsx",
+        lineNumber: 21,
+        columnNumber: 9
+    }, this);
+}
+_c = NavBar;
+var _c;
+$RefreshReg$(_c, "NavBar");
+
+  $parcel$ReactRefreshHelpers$be5a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequireed74")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

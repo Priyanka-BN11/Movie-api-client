@@ -29,8 +29,8 @@ export function NavBar({user}){
                             </Nav.Link>
                         )}
                         {isAuth() && (
-                            <Button variant="link" onClick={() =>
-                            {handleLogOut}}>Logout</Button>
+                            <Button variant="link" onClick={(e) =>
+                            {handleLogOut(e)}}>Logout</Button>
                         )}
                         {!isAuth() && (
                             <Nav.Link href="/">Sign-in</Nav.Link>

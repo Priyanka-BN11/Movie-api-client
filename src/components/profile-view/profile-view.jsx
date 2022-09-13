@@ -1,17 +1,23 @@
-import React from 'react';
+import React,{ useState, useEffect} from 'react';
 // import { Link } from "react-router-dom";
 import axios from 'axios';
 import UserInfo from './user-info';
 import FavoriteMovie from './favorite-movie';
 import UserUpdate from './user-update';
-import { useEffect } from 'react';
-export function ProfileView(props){
-    const [user, setUser] = useState(props.user);
-    const [ movies, setMovies ] = useState(props.movies);
-  const [ favouriteMovies, setFavouriteMovies ] = useState([]);
+import FavoriteMovie from './favorite-movie';
+import {Container, Row, Col} from 'react-bootstrap';
+export function ProfileView({movies}){
+    const [user, setUser] = useState({
+        Username: '',
+        Email:'',
+        FavoriteMovie: []
+    })
   const Username = localStorage.getItem('user');
   const token = localStorage.getItem('token');
-     
+
+     const favoriteMovieList = movies.filter(( movies) => {
+        return user.FavoriteMovie.includes(movies._id);
+     });
     const getUser = () => {
         axios.get(`https://movie-app-priya.herokuapp.com/users/${Username}`,{
            headers: {'Authorization': `Bearer ${token}`} 
@@ -19,7 +25,7 @@ export function ProfileView(props){
         .then(response => {
             //Assign the result to the state
             setUser(response.data);
-            setFavouriteMovies(response.data.FavouriteMovies)
+            setFavouriteMovie(response.data.FavouriteMovie)
         })
         .catch(error =>  console.log(error))
            
@@ -27,10 +33,12 @@ export function ProfileView(props){
     }
     const handleSubmit = (e) => {
 
-    }
-    const removeFav = (id) => {
-
     };
+    // const removeFav = (id) => {
+
+    // };
+
+
     const handleUpdate = (e) => {
   
         axios.put(`https://movie-app-priya.herokuapp.com/users/${Username}`,
@@ -64,16 +72,28 @@ export function ProfileView(props){
 
     };
     useEffect(() => {
-        getUser();
+        let isMounted = true;
+        isMounted && getUser();
+        return() => {
+            isMounted= false;
+        }
     },[])
 
 
     return (
-        <div>
-           <UserInfo username={user.Username} email={user.Email}/>
-            <FavoriteMovie favoriteMovieList={favoriteMovieList} />
-            <UserUpdate handleSubmit={handleSubmit} handleUpdate={handleUpdate}/>
-        </div>
+        <Container>
+            <Row>
+                <Col>
+                    <UserInfo username={user.Username} email={user.Email}/>
+                </Col>
+                <Col>
+                    <FavoriteMovie favoriteMovieList={favoriteMovieList} />
+                </Col>
+                <Col>
+                    <UserUpdate user={user} setUser={setUser}/>
+                </Col>
+            </Row>
+        </Container>
     )
 }
     

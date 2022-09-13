@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route} from "react-router-dom";
-import {NavBar} from '../navbar/navbar';
+import {NavBar} from '../Navbar/navbar';
 import {Row, Col, Container} from 'react-bootstrap';
 import { LoginView } from '../login-view/login-view';
 import { ProfileView } from '../profile-view/profile-view';
@@ -164,7 +164,7 @@ class MainView extends React.Component {
                                     <ProfileView 
                                     user={user} 
                                     onBackClick={() => history.goBack()}
-                                    favoriteMovies={favoriteMovies || []}
+                                    // favoriteMovies={favoriteMovies || []}
                                     handleFavorite={this.handleFavorite}
                                     movies={movies}
                                     />
