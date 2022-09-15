@@ -1,6 +1,7 @@
-import React from 'react'
-
-function UserUpdate(handleSubmit, handleUpdate, user) {
+import React from 'react';
+import {Button } from 'react-bootstrap';
+function UserUpdate({handleSubmit, handleUpdate, user}) {
+  
   return (
     <form className='profile-form' onSubmit={(e) => handleSubmit(e)}>
                 <h2>Want to change some info?</h2>
@@ -20,6 +21,12 @@ function UserUpdate(handleSubmit, handleUpdate, user) {
                 <input 
                 type='email'
                 name='email'/>
+                <label>Birthday</label>
+                <input 
+                type="date" name="birthday"
+                defaultValue={user.Birthday}
+                onChange={e => handleUpdate(e)}/>
+                <Button varianr="primary" onClick={handleUpdate()}>Save</Button> 
             </form>
   )
 }

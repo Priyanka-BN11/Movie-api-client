@@ -4,62 +4,71 @@ import axios from 'axios';
 import UserInfo from './user-info';
 import FavoriteMovie from './favorite-movie';
 import UserUpdate from './user-update';
-import FavoriteMovie from './favorite-movie';
 import {Container, Row, Col} from 'react-bootstrap';
-export function ProfileView({movies}){
-    const [user, setUser] = useState({
-        Username: '',
-        Email:'',
-        FavoriteMovie: []
-    })
+
+    export function ProfileView(props){
+
+    const [user, setUser] = useState(props.user);
+    const [ movies, setMovies ] = useState(props.movies);
+
+    const [ favouriteMovies, setFavouriteMovies ] = useState([]);
+    // const [username, setUsername]=useState(props.username);
+    
+    const[ email, setEmail]=useState('');
+    const[ birthday, setBirthday]= useState('');
+
   const Username = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
-     const favoriteMovieList = movies.filter(( movies) => {
-        return user.FavoriteMovie.includes(movies._id);
-     });
+    //  const favoriteMovieList = movies.filter(( movies) => {
+    //     return user.FavoriteMovie.includes(movies._id);
+    //  });
+
     const getUser = () => {
         axios.get(`https://movie-app-priya.herokuapp.com/users/${Username}`,{
            headers: {'Authorization': `Bearer ${token}`} 
         })
         .then(response => {
             //Assign the result to the state
+            console.log(response.data,"in the api",typeof response.data)
+
             setUser(response.data);
-            setFavouriteMovie(response.data.FavouriteMovie)
+            setFavouriteMovies(response.data.FavoriteMovies)
         })
         .catch(error =>  console.log(error))
            
    
     }
     const handleSubmit = (e) => {
+        
 
     };
-    // const removeFav = (id) => {
+    const removeFav = (id) => {
 
-    // };
+    };
 
 
     const handleUpdate = (e) => {
   
         axios.put(`https://movie-app-priya.herokuapp.com/users/${Username}`,
         {
-            Username: this.state.Username,
-            Password: this.state.Password,
-            Email:this.state.Email,
-            Birthday:this.state.Birthday,
+            Username: user.Username,
+            Password: user.Password,
+            Email:user.Email,
+            Birthday:user.Birthday,
         },
         {
             headers: {Authorization : `Bearer ${token}`},
         }
         )
         .then((response) => {
-            this.setState({
-                Username:response.data.Username,
-                Password:response.data.Password,
-                Email:response.data.Email,
-                Birthday:response.data.Birthday,
-            });
-            localStorage.setItem("user",this.state.Username);
+            {
+                // setUserame(response.data.Username),
+                //  setPassword(response.data.Password),
+                setEmail(response.data.Email),
+                setBirthday(response.data.Birthday)
+            }
+            localStorage.setItem("user",Username);
             const data=response.data;
             console.log(data);
             console.log(this.state.Username);
@@ -72,13 +81,9 @@ export function ProfileView({movies}){
 
     };
     useEffect(() => {
-        let isMounted = true;
-        isMounted && getUser();
-        return() => {
-            isMounted= false;
-        }
+        getUser();
     },[])
-
+    console.log(movies,favouriteMovies,"movies in profive app")
 
     return (
         <Container>
@@ -87,10 +92,10 @@ export function ProfileView({movies}){
                     <UserInfo username={user.Username} email={user.Email}/>
                 </Col>
                 <Col>
-                    <FavoriteMovie favoriteMovieList={favoriteMovieList} />
+                    <FavoriteMovie  movies={movies} favouriteMovies={favouriteMovies} />
                 </Col>
                 <Col>
-                    <UserUpdate user={user} setUser={setUser}/>
+                    <UserUpdate handleSubmit={handleSubmit} handleUpdate={handleUpdate} user={user} />
                 </Col>
             </Row>
         </Container>
