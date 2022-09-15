@@ -68,7 +68,7 @@ import {Container, Row, Col} from 'react-bootstrap';
                 setEmail(response.data.Email),
                 setBirthday(response.data.Birthday)
             }
-            localStorage.setItem("user",Username);
+            localStorage.setItem("user",this.state.Username);
             const data=response.data;
             console.log(data);
             console.log(this.state.Username);
