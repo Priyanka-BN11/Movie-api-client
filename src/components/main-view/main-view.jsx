@@ -66,47 +66,47 @@ class MainView extends React.Component {
         });
         window.open('/', '_self');
     }
-    handleFavorite = (movieId, action) => {
-        const { username, favoriteMovies } = this.state;
-        const accessToken = localStorage.getItem('token');
-        if (accessToken !== null && username !== null) {
-            // Add MovieID to Favorites (local state & webserver)
-            if (action === 'add') {
-                this.setState({ favoriteMovies: [...favoriteMovies, movieId] });
-                axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
-                {
-                headers: { Authorization: `Bearer ${accessToken}` },
-                }
-                )
-            .then((res) => {
-                console.log(`Movie added to ${username} Favorite movies`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    // handleFavorite = (movieId, action) => {
+    //     const { username, favoriteMovies } = this.state;
+    //     const accessToken = localStorage.getItem('token');
+    //     if (accessToken !== null && username !== null) {
+    //         // Add MovieID to Favorites (local state & webserver)
+    //         if (action === 'add') {
+    //             this.setState({ favoriteMovies: [...favoriteMovies, movieId] });
+    //             axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
+    //             {
+    //             headers: { Authorization: `Bearer ${accessToken}` },
+    //             }
+    //             )
+    //         .then((res) => {
+    //             console.log(`Movie added to ${username} Favorite movies`);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
 
-            // Remove MovieID from Favorites (local state & webserver)
-            } else if (action === 'remove') {
-                this.setState({
-                    favoriteMovies: favoriteMovies.filter((id) => id !== movieId),
-                });
-                axios.delete(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
-            {
-                headers: { Authorization: `Bearer ${accessToken}` },
-            }
-                )
-            .then((res) => {
-                console.log(`Movie removed from ${username} Favorite movies`);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-            } 
-        }
-    };
+    //         // Remove MovieID from Favorites (local state & webserver)
+    //         } else if (action === 'remove') {
+    //             this.setState({
+    //                 favoriteMovies: favoriteMovies.filter((id) => id !== movieId),
+    //             });
+    //             axios.delete(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
+    //         {
+    //             headers: { Authorization: `Bearer ${accessToken}` },
+    //         }
+    //             )
+    //         .then((res) => {
+    //             console.log(`Movie removed from ${username} Favorite movies`);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         });
+    //         } 
+    //     }
+    // };
     render() {
         const { movies, user, favoriteMovies} = this.state;        
-        console.log(movies,"movie at this render") 
+        // console.log(movies,"movie at this render") 
 
             return (
                 <Router>

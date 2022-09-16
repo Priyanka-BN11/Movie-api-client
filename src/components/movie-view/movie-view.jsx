@@ -12,6 +12,20 @@ export class MovieView extends React.Component{
     componentWillUnmount(){
         document.removeEventListener('keypress',this.keypressCallback);
     }
+    addFav = (title) => {
+        let token = localStorage.getItem('token');
+        axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
+              {
+                  headers: { Authorization: `Bearer ${accessToken}` },
+              }
+                  )
+              .then((res) => {
+                  console.log(`Movie removed from ${username} Favorite movies`);
+              })
+              .catch((err) => {
+                  console.log(err);
+              });
+              } 
     render(){
         const {movie, onBackClick} = this.props;
         return(
@@ -47,6 +61,7 @@ export class MovieView extends React.Component{
 <Link to={`/genres/${movie.Genre.Name}`}>
   <Button variant="link">Genre</Button>
 </Link>
+                <Button onClick={() => addFav(movies.title) }>Add Favorite</Button> 
                 <Button onClick={() => {onBackClick(null); }} variant="warning">Back</Button>
             </div>
         );

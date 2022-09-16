@@ -25,14 +25,14 @@ export class DirectorView extends React.Component {
                         <b>Bio:</b> <br />
                         {director.Bio}
                         </Card.Body>
-                        <h2 className="subtitle">DIRECTED MOVIES: </h2>
+                        {/* <h2 className="subtitle">DIRECTED MOVIES: </h2>
         <Card.Body>
           {directorMovies.map((movie) => (
             <MovieCard key={movie._id} movie={movie}>
               {movie.title}
             </MovieCard>
           ))}
-        </Card.Body>
+        </Card.Body> */}
                     <Card.Footer>
                         <Button
                             className="dir-view-button"
