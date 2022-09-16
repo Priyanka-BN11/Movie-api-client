@@ -12,7 +12,7 @@ import {Button} from 'react-bootstrap';
 
     })
   }
- addFav = (title) => {
+ const addFav = (title) => {
   let token = localStorage.getItem('token');
   axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
         {
@@ -25,7 +25,7 @@ import {Button} from 'react-bootstrap';
         .catch((err) => {
             console.log(err);
         });
-        } 
+        } ;
 
  
 //   handleFavorite = (movieId, action) => {

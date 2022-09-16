@@ -39880,7 +39880,7 @@ class MovieView extends (0, _reactDefault.default).Component {
     componentWillUnmount() {
         document.removeEventListener("keypress", this.keypressCallback);
     }
-    addFav = (title)=>{
+    addFav = (movies)=>{
         let token = localStorage.getItem("token");
         axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`, {
             headers: {
@@ -40067,7 +40067,9 @@ class MovieView extends (0, _reactDefault.default).Component {
                     columnNumber: 1
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                    onClick: ()=>addFav(movies.title),
+                    onClick: ()=>{
+                        addFav(movie);
+                    },
                     children: "Add Favorite"
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
@@ -40666,7 +40668,7 @@ function FavoriteMovie(props) {
             }
         });
     };
-    addFav = (title)=>{
+    const addFav = (title)=>{
         let token = localStorage.getItem("token");
         (0, _axiosDefault.default).post(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`, {
             headers: {
