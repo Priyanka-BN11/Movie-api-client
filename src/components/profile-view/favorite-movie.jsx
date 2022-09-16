@@ -6,11 +6,17 @@ import { Link } from "react-router-dom";
   const {movies, favouriteMovies} = props;
   const removeFav = (id) => {
     let token = localStorage.getItem('token');
-    let url = `https://movie-app-priya.herokuapp.com/users/${localStorage.getItem('username')}/movies/${id}`;
-    axios.delete(url,{
-      headers: { Authorization: `Bearer ${token}` },
+    let user=localStorage.getItem("user")
+    let url = `https://movie-app-priya.herokuapp.com/users/${user}/movies/${id}`;
 
+     axios.delete(url, {
+      headers: { Authorization: `Bearer ${token}`}
     })
+    .then(() => {
+      alert(`The movie was successfully deleted.`)
+      window.open(`/users/${user}`, '_self');
+    }).
+    catch(error => console.error(error))
   }
   const favouriteMoviesList = movies.filter(m => {
     return favouriteMovies.includes(m._id)
@@ -27,7 +33,7 @@ import { Link } from "react-router-dom";
             <Link to={`/movies/${movies._id}`}>
             <h4>{movies.Title}</h4>
             </Link>
-            <button variant="secondary" onClick={() => removeFav(movies._id)}>Remove from list</button>
+            <button onClick={() => removeFav(movies._id)}>Remove from list</button>
             </div>
         )
         }): (
