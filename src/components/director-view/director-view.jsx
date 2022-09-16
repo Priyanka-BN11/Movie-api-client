@@ -1,11 +1,12 @@
 import React from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { MovieCard } from '../movie-card/movie-card';
 
 export class DirectorView extends React.Component {
 
     render() {
-        const { director, onBackClick } = this.props;
+        const { director, directorMovies, onBackClick } = this.props;
 
 
         return (
@@ -24,6 +25,14 @@ export class DirectorView extends React.Component {
                         <b>Bio:</b> <br />
                         {director.Bio}
                         </Card.Body>
+                        <h2 className="subtitle">DIRECTED MOVIES: </h2>
+        <Card.Body>
+          {directorMovies.map((movie) => (
+            <MovieCard key={movie._id} movie={movie}>
+              {movie.title}
+            </MovieCard>
+          ))}
+        </Card.Body>
                     <Card.Footer>
                         <Button
                             className="dir-view-button"
