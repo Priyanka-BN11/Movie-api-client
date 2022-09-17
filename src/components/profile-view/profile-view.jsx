@@ -83,7 +83,6 @@ import {Container, Row, Col} from 'react-bootstrap';
     useEffect(() => {
         getUser();
     },[])
-    console.log(movies,favouriteMovies,"movies in profive app")
 
     return (
         <Container>
@@ -95,7 +94,7 @@ import {Container, Row, Col} from 'react-bootstrap';
                     <FavoriteMovie  movies={movies} favouriteMovies={favouriteMovies} />
                 </Col>
                 <Col>
-                    <UserUpdate handleSubmit={handleSubmit} handleUpdate={handleUpdate} user={user} />
+                    <UserUpdate  user={user} />
                 </Col>
             </Row>
         </Container>
