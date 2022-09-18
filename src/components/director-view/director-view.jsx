@@ -6,7 +6,8 @@ import { MovieCard } from '../movie-card/movie-card';
 export class DirectorView extends React.Component {
 
     render() {
-        const { director, directorMovies, onBackClick } = this.props;
+        const { director, movies, onBackClick } = this.props;
+        let directorMovies=movies.filter(movie=>movie.Director.Name==director.Name)
 
 
         return (
@@ -26,7 +27,7 @@ export class DirectorView extends React.Component {
                         {director.Bio}
                         </Card.Body>
                         <h2 className="subtitle">DIRECTED MOVIES: </h2>
-        <Card.Body>
+                        <Card.Body>{console.log(directorMovies,director,movies,"director movies")}
           {directorMovies.map((movie) => (
             <MovieCard key={movie._id} movie={movie}>
               {movie.title}

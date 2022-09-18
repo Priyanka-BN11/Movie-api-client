@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Button } from 'react-bootstrap';
+import {Button, Card, Form } from 'react-bootstrap';
 function UserUpdate(props) {
   const { user } = props;
   const [ username, setUsername] = useState("");
@@ -68,40 +68,39 @@ function UserUpdate(props) {
     }
   };  
   return (
-    <form className='profile-form'>
-                <h2>Want to change some info?</h2>
-                <label>Username:</label>
+    <Card>
+      <Card.Header>Update User Info</Card.Header>
+    <Form className='profile-form'>
+                
+                <Form.Label>Username:</Form.Label>
                 {values.usernameErr && <p>{values.usernameErr}</p>}
 
-                <input 
+                <Form.Control 
                 type='text'
                 name='Username'
                 defaultValue={user.Username}
                 onChange={e => setUsername(e.target.value)}/>
-                <label>Password</label>
-                {values.passwordErr && <p>{values.passwordErr}</p>}
 
-                <input 
+                <Form.Label>Password</Form.Label>
+                {values.passwordErr && <p>{values.passwordErr}</p>}
+                <Form.Control 
                 type='password'
                 name='password'
-                defaultValue={user.Password}
+                placeholder="Enter New Pasword"
                 onChange={e => setPassword(e.target.value)}/>
-                <label>Email address</label>
-                {values.emailErr && <p>{values.emailErr}</p>}
 
-                <input 
+                <Form.Label>Email address</Form.Label>
+                {values.emailErr && <p>{values.emailErr}</p>}
+                <Form.Control 
                 type='email'
                 name='email'
-                defaultValue={user.Email}
+                placeholder="Enter New Email"
                 onChange={e => setEmail(e.target.value)}
                 />
-                <label>Birthday</label>
-                <input 
-                type="date" name="birthday"
-                defaultValue={user.Birthday}
-                onChange={e => setBirthday(e.target.value)}/>
+               
                 <Button varianr="primary" onClick={(e) => handleUpdate(e)}>Save</Button> 
-            </form>
+            </Form>
+            </Card>
   )
 }
 export default UserUpdate;

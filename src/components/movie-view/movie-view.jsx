@@ -1,3 +1,4 @@
+// import axios from 'axios';
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import {Link} from "react-router-dom";
@@ -12,22 +13,28 @@ export class MovieView extends React.Component{
     componentWillUnmount(){
         document.removeEventListener('keypress',this.keypressCallback);
     }
-    addFav = (movies) => {
-        let token = localStorage.getItem('token');
-        axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
-              {
-                  headers: { Authorization: `Bearer ${accessToken}` },
-              }
-                  )
-              .then((res) => {
-                  console.log(`Movie removed from ${username} Favorite movies`);
-              })
-              .catch((err) => {
-                  console.log(err);
-              });
-              } ;
+    //  addFav = (movieId) => {
+    //     let token = localStorage.getItem('token');
+    //     let username = localStorage.getItem("user");
+
+    //     axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/Movies/${movieId}`,{},
+    //           {
+    //               headers: { 
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': `Bearer ${token}` },
+    //           }
+    //               )
+    //           .then(() => {
+    //               console.log(`Movie added to ${username} Favorite movies`);
+    //           })
+    //           .catch((err) => {
+    //               console.log(err);
+    //           });
+    //           } ;
+      
     render(){
         const {movie, onBackClick} = this.props;
+       
         return(
             <div className="movie-view">
                 <div className="movie-poster">
@@ -61,7 +68,7 @@ export class MovieView extends React.Component{
 <Link to={`/genres/${movie.Genre.Name}`}>
   <Button variant="link">Genre</Button>
 </Link>
-                <Button onClick={() => {addFav(movie)} }>Add Favorite</Button> 
+                {/* <Button onClick={() => {this.addFav(movie._id)} }>Add Favorite</Button>  */}
                 <Button onClick={() => {onBackClick(null); }} variant="warning">Back</Button>
             </div>
         );

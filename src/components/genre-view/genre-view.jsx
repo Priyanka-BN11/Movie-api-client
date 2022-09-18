@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button, Container, Card } from 'react-bootstrap';
+import { MovieCard } from '../movie-card/movie-card';
 
 import './genre-view.scss';
 
 export class GenreView extends React.Component {
 
     render() {
-        const { genre, onBackClick, } = this.props;
+        const { genre, movies, onBackClick, } = this.props;
+        // const genreMovies=movies.filter(movie=>movie.Genre.Name==genre.Name)
 
         return (
             
@@ -21,6 +23,13 @@ export class GenreView extends React.Component {
                     <Card.Body>
                         {genre.Description}
                         </Card.Body>
+                        {/* <Card.Body>{console.log(genreMovies,genre,movies,"genre movies")}
+                        {genreMovies.map((movie) => (
+                            <MovieCard key={movie._id} movie={movie}>
+                            {movie.title}
+                            </MovieCard>
+                        ))}
+                        </Card.Body> */}
                     <Card.Footer>
                         <Button
                             className="genre-view-button"

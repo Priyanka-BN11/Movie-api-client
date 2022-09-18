@@ -12,6 +12,12 @@
   font-family: Rajdhani, serif;
 }
 
+.sameline {
+  flex-direction: row;
+  justify-content: space-between;
+  display: flex;
+}
+
 
 
 /*# sourceMappingURL=index.ce1d6491.css.map */

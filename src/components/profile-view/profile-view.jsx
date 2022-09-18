@@ -5,7 +5,7 @@ import UserInfo from './user-info';
 import FavoriteMovie from './favorite-movie';
 import UserUpdate from './user-update';
 import {Container, Row, Col} from 'react-bootstrap';
-
+import './favorite-movie.scss';
     export function ProfileView(props){
 
     const [user, setUser] = useState(props.user);
@@ -20,9 +20,6 @@ import {Container, Row, Col} from 'react-bootstrap';
   const Username = localStorage.getItem('user');
   const token = localStorage.getItem('token');
 
-    //  const favoriteMovieList = movies.filter(( movies) => {
-    //     return user.FavoriteMovie.includes(movies._id);
-    //  });
 
     const getUser = () => {
         axios.get(`https://movie-app-priya.herokuapp.com/users/${Username}`,{
@@ -39,13 +36,7 @@ import {Container, Row, Col} from 'react-bootstrap';
            
    
     }
-    const handleSubmit = (e) => {
-        
-
-    };
-    const removeFav = (id) => {
-
-    };
+    
 
 
     const handleUpdate = (e) => {
@@ -87,14 +78,18 @@ import {Container, Row, Col} from 'react-bootstrap';
     return (
         <Container>
             <Row>
-                <Col>
+                <Col >
                     <UserInfo username={user.Username} email={user.Email}/>
                 </Col>
-                <Col>
-                    <FavoriteMovie  movies={movies} favouriteMovies={favouriteMovies} />
-                </Col>
-                <Col>
+                <Col >
                     <UserUpdate  user={user} />
+                </Col>
+            </Row>
+            <br/>
+            <Row>
+            <Col>
+                    <FavoriteMovie lg={4} movies={movies} favouriteMovies={favouriteMovies} className="sameline"/>
+                   
                 </Col>
             </Row>
         </Container>

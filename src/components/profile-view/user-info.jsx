@@ -1,10 +1,15 @@
 import React from 'react'
+import { Card } from 'react-bootstrap';
 function UserInfo({username, email}) {
   return (
-    <div> 
-        <p>User: {username}</p>
+    <Card>
+      <Card.Header>User Info</Card.Header>
+      <Card.Body>
+      <p>User: {username}</p>
         <p>Email: {email}</p>
-    </div>
+      </Card.Body>
+       
+        </Card> 
   )
 }
 export default UserInfo;

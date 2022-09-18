@@ -1,10 +1,31 @@
+import axios from 'axios';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, Row, Col, Container, CardGroup } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
  export class MovieCard extends React.Component {
+	addFav = (movieId) => {
+		let token = localStorage.getItem('token');
+		let username = localStorage.getItem("user");
+
+		axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/Movies/${movieId}`,{},
+			  {
+				  headers: { 
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${token}` },
+			  }
+				  )
+			  .then(() => {
+				  console.log(`Movie added to ${username} Favorite movies`);
+			  })
+			  .catch((err) => {
+				  console.log(err);
+			  });
+			  } ;
     render() {
         const {movie} = this.props;
+	
         return (
 			<Container>
 				<Row>
@@ -18,6 +39,9 @@ import { Link } from "react-router-dom";
 									<Link to={`/movies/${movie._id}`}>
 										<Button variant="link">Open</Button>
 									</Link>
+									<Button onClick={() => {this.addFav(movie._id); alert('Movie added to favorites')} }><FaHeart /></Button> 
+									{/* <FontAwesomeIcon icon="fa-sharp fa-solid fa-heart" /> */}
+									
 								</Card.Body>
 							</CardGroup>
           				</Card>

@@ -66,44 +66,6 @@ class MainView extends React.Component {
         });
         window.open('/', '_self');
     }
-    // handleFavorite = (movieId, action) => {
-    //     const { username, favoriteMovies } = this.state;
-    //     const accessToken = localStorage.getItem('token');
-    //     if (accessToken !== null && username !== null) {
-    //         // Add MovieID to Favorites (local state & webserver)
-    //         if (action === 'add') {
-    //             this.setState({ favoriteMovies: [...favoriteMovies, movieId] });
-    //             axios.post(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
-    //             {
-    //             headers: { Authorization: `Bearer ${accessToken}` },
-    //             }
-    //             )
-    //         .then((res) => {
-    //             console.log(`Movie added to ${username} Favorite movies`);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-
-    //         // Remove MovieID from Favorites (local state & webserver)
-    //         } else if (action === 'remove') {
-    //             this.setState({
-    //                 favoriteMovies: favoriteMovies.filter((id) => id !== movieId),
-    //             });
-    //             axios.delete(`https://movie-app-priya.herokuapp.com/users/${username}/favorites/${movieId}`,
-    //         {
-    //             headers: { Authorization: `Bearer ${accessToken}` },
-    //         }
-    //             )
-    //         .then((res) => {
-    //             console.log(`Movie removed from ${username} Favorite movies`);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    //         } 
-    //     }
-    // };
     render() {
         const { movies, user, favoriteMovies} = this.state;        
         // console.log(movies,"movie at this render") 
@@ -122,7 +84,7 @@ class MainView extends React.Component {
                            //Before the movies have been loaded
                            if(movies.length === 0) return <div className="main-view"/>;
                            return movies.map(m => (
-                            <Col md={3} key={m._id}>
+                            <Col md={3} key={m._id} >
                                 <MovieCard movie={m}/>
                             </Col>
                            ))
@@ -147,7 +109,7 @@ class MainView extends React.Component {
                             </Col>
                             if (movies.length === 0) return <div className="main-view" />;
                             return <Col md={8}>
-                            <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
+                            <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director}  movies={movies} onBackClick={() => history.goBack()} />
                             </Col>
                         }
                         } />
@@ -173,9 +135,6 @@ class MainView extends React.Component {
                                                     movies={movies}
                                                     user={user} 
                                                     onBackClick={() => history.goBack()}
-                                                    // favouriteMovies={favouriteMovies || []}
-                                                    // handleFavorite={this.handleFavorite}
-
                                                     />
                                                 </Col>
                                             }} />     

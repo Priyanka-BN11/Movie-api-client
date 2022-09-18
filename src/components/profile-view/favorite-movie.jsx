@@ -1,8 +1,8 @@
  import axios from 'axios';
 import React from 'react'
 import { Link } from "react-router-dom";
-import {Button} from 'react-bootstrap';
-
+import {Button, Card, CardGroup, Row, Col} from 'react-bootstrap';
+import './favorite-movie.scss';
  function FavoriteMovie(props) {
   const {movies, favouriteMovies} = props;
 
@@ -10,9 +10,9 @@ import {Button} from 'react-bootstrap';
     let token = localStorage.getItem('token');
     let user=localStorage.getItem("user")
 
-    let url = `https://movie-app-priya.herokuapp.com/users/${user}/movies/${id}`;
+    let url = `https://movie-app-priya.herokuapp.com/users/${user}/Movies/${id}`;
     axios.delete(url,{
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { 'Authorization': `Bearer ${token}` },
 
     })
     .then(() => {
@@ -22,7 +22,7 @@ import {Button} from 'react-bootstrap';
     catch(error => console.error(error))
   }
   
-
+ 
  
 
   const favouriteMoviesList = movies.filter(m => {
@@ -30,22 +30,32 @@ import {Button} from 'react-bootstrap';
     // return ["62f56407669838a75a85d072"].includes(m._id)
   })
   return ( 
-    <div> 
-        <h2>Favorite Movies</h2>
-        
+   
+    <CardGroup>
+    <Card> 
+      <Card.Header as="h5">Favorite Movies</Card.Header>  
+      <Card.Body className="sameline" variant="outlined">
     {favouriteMoviesList?favouriteMoviesList.map((movies) => {
         return (
-            <div key={movies._id}>
-            <img src={movies.ImagePath} />
+          
+            <div key={movies._id} className='col-4'>
+            <img src={movies.ImagePath}  />
             <Link to={`/movies/${movies._id}`}>
             <h4>{movies.Title}</h4>
             </Link>
             <Button variant="danger" onClick={() => removeFav(movies._id)}>Remove Favorite</Button>
+            <br/>
+            <br/>
             </div>
+             
         )
         }):null}
-    </div>
+      
+        </Card.Body>
+    </Card>
+    </CardGroup>
     
+
   )
 }
 
