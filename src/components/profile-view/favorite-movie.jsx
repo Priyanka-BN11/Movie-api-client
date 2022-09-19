@@ -32,9 +32,9 @@ import './favorite-movie.scss';
   return ( 
    
     <CardGroup>
-    <Card> 
+    <Card > 
       <Card.Header as="h5">Favorite Movies</Card.Header>  
-      <Card.Body className="sameline" variant="outlined">
+      <Card.Body style={{ display: "flex", flexWrap: "wrap" }}variant="outlined">
     {favouriteMoviesList?favouriteMoviesList.map((movies) => {
         return (
           

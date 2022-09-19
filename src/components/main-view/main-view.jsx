@@ -73,7 +73,7 @@ class MainView extends React.Component {
             return (
                 <Router>
                     <NavBar user={user} />
-                    <Container>
+                    <Container fluid>
                     <Row className="main-view justify-content-md-center">
                         <Route exact path = "/" render={() => {
                            // If there is no user, the LoginView is rendered. If there is a user logged in, the user details are 
@@ -120,7 +120,7 @@ class MainView extends React.Component {
                             </Col>
                             if (movies.length === 0) return <div className="main-view" />;
                             return <Col md={8}>
-                            <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
+                            <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} movies={movies} onBackClick={() => history.goBack()} />
                                             </Col>
                                         }}/>
                             {/* route for link on main-view to profile-view */}

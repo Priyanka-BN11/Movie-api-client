@@ -1,6 +1,6 @@
 // import axios from 'axios';
 import React from 'react';
-import Button from 'react-bootstrap/Button';
+import {Button, Card, Row, Col, Container} from 'react-bootstrap';
 import {Link} from "react-router-dom";
 export class MovieView extends React.Component{
     keypressCallback(event){
@@ -36,31 +36,27 @@ export class MovieView extends React.Component{
         const {movie, onBackClick} = this.props;
        
         return(
-            <div className="movie-view">
-                <div className="movie-poster">
-                    <img src ={movie.ImagePath}/> 
-                </div>
-                <div className="movie-title">
-                    <span className="label">Title: </span>
-                    <span className="value">{movie.Title}</span>
-                </div>
-                <div className="movie-description">
-                    <span className="label">Description: </span>
-                    <span className="value">{movie.Description}</span>
-                </div>
-                <div className="movie-genre">
-                    <span className="label">Genre: </span>
-                    <span className="value">{movie.Genre.Name}</span>
-                </div>
-                <div className="movie-director">
-                    <span className="label">Director: </span>
-                    <span className="value">{movie.Director.Name}</span>
-                </div>
-                <div className="movie-actors">
-                    <span className="label">Actors: </span>
-                    <span className="value">{movie.Actors}</span>
+            <Container>
+            <Card className="movie-view">
+                <Card.Header>{movie.Title}</Card.Header>
+            
+                    <Card.Img src ={movie.ImagePath}  style={{ width: '15rem' }}/> 
+                 
+                   
+                    <Card.Body>                    <Card.Text>Description:{movie.Description} </Card.Text>
+                    
+                   
 
-                </div>
+                     
+                    <Card.Text>Genre: {movie.Genre.Name} </Card.Text>
+                   
+
+                   
+                    <Card.Text>Director: {movie.Director.Name} </Card.Text>
+                  
+              
+                <Card.Text>Actors: {movie.Actors}</Card.Text>
+                  
                 <Link to={`/directors/${movie.Director.Name}`}>
   <Button variant="link">Director</Button>
 </Link>
@@ -70,7 +66,9 @@ export class MovieView extends React.Component{
 </Link>
                 {/* <Button onClick={() => {this.addFav(movie._id)} }>Add Favorite</Button>  */}
                 <Button onClick={() => {onBackClick(null); }} variant="warning">Back</Button>
-            </div>
+                </Card.Body>
+            </Card>
+            </Container>
         );
     }
 }

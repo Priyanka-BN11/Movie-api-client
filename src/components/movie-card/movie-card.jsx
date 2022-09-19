@@ -27,9 +27,8 @@ import { FaHeart } from "react-icons/fa";
         const {movie} = this.props;
 	
         return (
-			<Container>
-				<Row>
-					<Col>
+			<Container fluid xl={12}>
+
 						<Card>
 							<CardGroup>
 								<Card.Img varient="top" src={movie.ImagePath}/>
@@ -40,13 +39,12 @@ import { FaHeart } from "react-icons/fa";
 										<Button variant="link">Open</Button>
 									</Link>
 									<Button onClick={() => {this.addFav(movie._id); alert('Movie added to favorites')} }><FaHeart /></Button> 
-									{/* <FontAwesomeIcon icon="fa-sharp fa-solid fa-heart" /> */}
+									
 									
 								</Card.Body>
 							</CardGroup>
           				</Card>
-		  			</Col>
-		  		</Row>
+		  		
 		  	</Container>
             );
     }

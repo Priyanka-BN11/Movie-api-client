@@ -97,7 +97,7 @@ function UserUpdate(props) {
                 placeholder="Enter New Email"
                 onChange={e => setEmail(e.target.value)}
                 />
-               
+               <br/>
                 <Button varianr="primary" onClick={(e) => handleUpdate(e)}>Save</Button> 
             </Form>
             </Card>
