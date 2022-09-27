@@ -88,7 +88,7 @@ import './favorite-movie.scss';
             <br/>
             <Row>
             <Col>
-                    <FavoriteMovie  movies={movies} favouriteMovies={favouriteMovies} className="sameline"/>
+                    <FavoriteMovie  movies={movies} favouriteMovies={favouriteMovies} sm={4} />
                    
                 </Col>
             </Row>

@@ -21,6 +21,7 @@ export function NavBar({user}){
         <Navbar className="main-nav" sticky="top" bg="dark" expand="lg" variant="dark">
             <Container>
                 <Navbar.Brand className="navbar-logo" href="/">MovieApp</Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
                         {isAuth() && (

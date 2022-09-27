@@ -24,7 +24,7 @@ export class DirectorView extends React.Component {
                         {director.Bio}
                     </Card.Body>
                    <Card.Header>Directed movies</Card.Header>
-                    <Card.Body style={{display: 'flex', flexDirection: 'row', width:'20rem'}}>{console.log(directorMovies,director,movies,"director movies")}
+                    <Card.Body style={{ display: "flex", flexDirection:"row", width:'30%' }} variant="outlined">{console.log(directorMovies,director,movies,"director movies")}
                         
                         {directorMovies.map((movie) => (
                             <MovieCard key={movie._id} movie={movie}>

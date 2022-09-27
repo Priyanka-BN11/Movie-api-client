@@ -32,14 +32,14 @@ import './favorite-movie.scss';
   return ( 
    
     <CardGroup>
-    <Card > 
+    <Card> 
       <Card.Header as="h5">Favorite Movies</Card.Header>  
       <Card.Body style={{ display: "flex", flexWrap: "wrap" }}variant="outlined">
     {favouriteMoviesList?favouriteMoviesList.map((movies) => {
         return (
           
             <div key={movies._id} className='col-4'>
-            <img src={movies.ImagePath}  />
+            <img src={movies.ImagePath} style={{display: 'table-row'}}/>
             <Link to={`/movies/${movies._id}`}>
             <h4>{movies.Title}</h4>
             </Link>

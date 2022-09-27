@@ -1,19 +1,28 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
 import Container from 'react-bootstrap/Container';
+// reduc devtool import
+import { devToolsEnhancer } from 'redux-devtools-extension';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import moviesApp  from './reducers/reducers';
 import  MainView from './components/main-view/main-view';
-// import { RegistrationView } from './components/registration-view/registration-view';
 //Importing statement to indicate that you need to bundle './index.scss'
 import './index.scss';
+
+// const store = createStore(moviesApp);
+//redux devtools
+const store = createStore(moviesApp, devToolsEnhancer());
 
 //Main component(will eventually use all the others)
 class MovieApp extends React.Component {
     render(){
             return (
-				<Container fluid>
-                <MainView />
-				{/* <RegistrationView /> */}
-				</Container>
+                <Provider store={store}>
+                    <Container fluid>
+                        <MainView />
+                    </Container>
+                </Provider>
                 );
     }
 }
