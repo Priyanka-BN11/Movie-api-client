@@ -12,7 +12,7 @@ Movie App UI is the movie website which displays the Movie details like Name of 
 7. Genre view - Returns data about a genre, with a name and description.
 8. Profile view - Allows users to update their user info (username, password, email, date of birth).Displays user's favorite movies.Allows users to remove a movie from their list of favorites
 
-##Tools & Technologies 
+## Tools & Technologies 
 1. React
 2. React-bootstrap
 3. React-redux
