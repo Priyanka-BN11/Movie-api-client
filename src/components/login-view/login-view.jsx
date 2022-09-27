@@ -80,7 +80,7 @@ export function LoginView(props){
 												{passwordErr && <p>{passwordErr}</p>}
 									</Form.Group>
 									<Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>{' '}
-									<Link to=""><Button variant ="primary">
+									<Link to="/register"><Button variant ="primary">
 										Register</Button></Link>
 								</Form>
 							</Card.Body>
