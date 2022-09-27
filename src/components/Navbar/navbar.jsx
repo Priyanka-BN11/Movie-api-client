@@ -1,5 +1,6 @@
 import React from "react";
 import {Navbar, Container, Nav, Button} from 'react-bootstrap';
+import { Link } from "react-router-dom";
 export function NavBar({user}){
     const handleLogOut = (e) => {
         e.preventDefault();
@@ -25,9 +26,10 @@ export function NavBar({user}){
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="ml-auto">
                         {isAuth() && (
-                            <Nav.Link href={`/users/${user}`}>
-                                {user}
-                            </Nav.Link>
+                            <Link to={`/users/${user}`}> {user}</Link>
+                            // <Nav.Link href={`/users/${user}`}>
+                               
+                            // </Nav.Link>
                         )}
                         {isAuth() && (
                             <Button variant="link" onClick={(e) =>
