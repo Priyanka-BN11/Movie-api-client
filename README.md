@@ -3,14 +3,14 @@
 Movie App UI is the movie website which displays the Movie details like Name of the movie of the particular movie when user Login the website. New user can also register their information in the app so they can login to view the movie details.
 
 ## Features 
-Login view - Allows users to log in with a username and password
-Registration view -Allows new users to register (username, password, email, birthday)
-Main view - Returns a list of ALL movies to the user (each listed item with an image, title)
-Sorting and filtering - Ability to select a movie for more details
-Single Movie view - Returns data (image, title, description, genre, director, actors) about a single movie to the user.Allows users to add a movie to their list of favorites.Allow users to move to director and genre view
-Director view - Returns data about a director's name, bio and birthday.
-Genre view - Returns data about a genre, with a name and description.
-Profile view - Allows users to update their user info (username, password, email, date of birth).Displays user's favorite movies.Allows users to remove a movie from their list of favorites
+1. Login view - Allows users to log in with a username and password
+2. Registration view -Allows new users to register (username, password, email, birthday)
+3. Main view - Returns a list of ALL movies to the user (each listed item with an image, title)
+4. Sorting and filtering - Ability to select a movie for more details
+5. Movie view - Returns data (image, title, description, genre, director, actors) about a single movie to the user.Allows users to add a movie to their list of favorites.Allow users to move to director and genre view
+6. Director view - Returns data about a director's name, bio and birthday.
+7. Genre view - Returns data about a genre, with a name and description.
+8. Profile view - Allows users to update their user info (username, password, email, date of birth).Displays user's favorite movies.Allows users to remove a movie from their list of favorites
 
 ##Tools & Technologies 
 1. React
