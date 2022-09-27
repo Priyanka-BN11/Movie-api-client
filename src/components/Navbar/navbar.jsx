@@ -27,13 +27,13 @@ export function NavBar({user}){
                     <Nav className="ml-auto">
                         {isAuth() && (
                             // <Link to={`/users/${user}`}> {user}</Link>
-                            <Button variant="link" href={`/users/${user}`} style={{color:'white'}}>
+                            <Nav.Link href={`/users/${user}`}>
                                {user}
-                            </Button>
+                            </Nav.Link>
                         )}
                         {isAuth() && (
                             <Button variant="link" onClick={(e) =>
-                            {handleLogOut(e)}} style={{color:'white'}}>Logout</Button>
+                            {handleLogOut(e)}}>Logout</Button>
                         )}
                         {!isAuth() && (
                             <Nav.Link href="/">Sign-in</Nav.Link>
