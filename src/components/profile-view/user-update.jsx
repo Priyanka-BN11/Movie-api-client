@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Button, Card, div } from 'react-bootstrap';
+import {Button, Card, Form } from 'react-bootstrap';
 function UserUpdate(props) {
   const { user } = props;
   const [ username, setUsername] = useState("");
@@ -39,7 +39,7 @@ function UserUpdate(props) {
     return isReq;
   }
 
-    handleUpdate = (e) => {
+    const handleUpdate = (e) => {
     e.preventDefault();
     const isReq = validate();   
      console.log(username,password,email,"user should be updated",isReq)
@@ -70,36 +70,36 @@ function UserUpdate(props) {
   return (
     <Card>
       <Card.Header>Update User Info</Card.Header>
-    <div className='profile-div'>
+    <Form className='profile-form'>
                 
-                <p>Username:</p>
+                <Form.Label>Username:</Form.Label>
                 {values.usernameErr && <p>{values.usernameErr}</p>}
 
-                <input 
+                <Form.Control 
                 type='text'
                 name='Username'
                 defaultValue={user.Username}
                 onChange={e => setUsername(e.target.value)}/>
 
-                <p>Password</p>
+                <Form.Label>Password</Form.Label>
                 {values.passwordErr && <p>{values.passwordErr}</p>}
-                <input 
+                <Form.Control 
                 type='password'
                 name='password'
                 placeholder="Enter New Pasword"
                 onChange={e => setPassword(e.target.value)}/>
 
-                <p>Email address</p>
+                <Form.Label>Email address</Form.Label>
                 {values.emailErr && <p>{values.emailErr}</p>}
-                <input 
-                type='text'
+                <Form.Control 
+                type='email'
                 name='email'
                 placeholder="Enter New Email"
                 onChange={e => setEmail(e.target.value)}
                 />
                <br/>
                 <Button varianr="primary" onClick={(e) => handleUpdate(e)}>Save</Button> 
-            </div>
+            </Form>
             </Card>
   )
 }
