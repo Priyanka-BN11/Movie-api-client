@@ -39,38 +39,38 @@ import './favorite-movie.scss';
     
 
 
-    const handleUpdate = (e) => {
+    // const handleUpdate = (e) => {
   
-        axios.put(`https://movie-app-priya.herokuapp.com/users/${Username}`,
-        {
-            Username: user.Username,
-            Password: user.Password,
-            Email:user.Email,
-            Birthday:user.Birthday,
-        },
-        {
-            headers: {Authorization : `Bearer ${token}`},
-        }
-        )
-        .then((response) => {
-            {
-                // setUserame(response.data.Username),
-                //  setPassword(response.data.Password),
-                setEmail(response.data.Email),
-                setBirthday(response.data.Birthday)
-            }
-            localStorage.setItem("user",this.state.Username);
-            const data=response.data;
-            console.log(data);
-            console.log(this.state.Username);
-            alert("Profile is updated!");
-            window.open(`/users/${Username}`, "_self");
-        })
-        .catch(function(error){
-            console.log(error);
-        });
+    //     axios.put(`https://movie-app-priya.herokuapp.com/users/${Username}`,
+    //     {
+    //         Username: user.Username,
+    //         Password: user.Password,
+    //         Email:user.Email,
+    //         Birthday:user.Birthday,
+    //     },
+    //     {
+    //         headers: {Authorization : `Bearer ${token}`},
+    //     }
+    //     )
+    //     .then((response) => {
+    //         {
+    //             // setUserame(response.data.Username),
+    //             //  setPassword(response.data.Password),
+    //             setEmail(response.data.Email),
+    //             setBirthday(response.data.Birthday)
+    //         }
+    //         localStorage.setItem("user",this.state.Username);
+    //         const data=response.data;
+    //         console.log(data);
+    //         console.log(this.state.Username);
+    //         alert("Profile is updated!");
+    //         window.open(`/users/${Username}`, "_self");
+    //     })
+    //     .catch(function(error){
+    //         console.log(error);
+    //     });
 
-    };
+    // };
     useEffect(() => {
         getUser();
     },[])
