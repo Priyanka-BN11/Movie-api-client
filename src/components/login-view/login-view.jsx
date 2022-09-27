@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Form, Button, Container, CardGroup, Row, Col, Card, Nav, Navbar } from 'react-bootstrap';
 // import { RegistrationView } from '../registration-view/registration-view';
 import './login-view.scss';
@@ -79,7 +80,8 @@ export function LoginView(props){
 												{passwordErr && <p>{passwordErr}</p>}
 									</Form.Group>
 									<Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>{' '}
-									<Button variant ="primary">Register</Button>
+									<Link to=""><Button variant ="primary">
+										Register</Button></Link>
 								</Form>
 							</Card.Body>
 
