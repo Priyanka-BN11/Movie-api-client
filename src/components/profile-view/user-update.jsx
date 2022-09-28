@@ -81,19 +81,20 @@ function UserUpdate(props) {
                 defaultValue={user.Username}
                 onChange={e => setUsername(e.target.value)}/>
 
-                <Form.Label>Password</Form.Label>
+                {/* <Form.Label>Password</Form.Label>
                 {values.passwordErr && <p>{values.passwordErr}</p>}
                 <Form.Control 
                 type='password'
                 name='password'
                 placeholder="Enter New Pasword"
-                onChange={e => setPassword(e.target.value)}/>
+                onChange={e => setPassword(e.target.value)}/> */}
 
                 <Form.Label>Email address</Form.Label>
                 {values.emailErr && <p>{values.emailErr}</p>}
                 <Form.Control 
                 type='email'
                 name='email'
+                defaultValue={user.Email}
                 placeholder="Enter New Email"
                 onChange={e => setEmail(e.target.value)}
                 />

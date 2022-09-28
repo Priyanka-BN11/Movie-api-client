@@ -38,6 +38,7 @@ class MainView extends React.Component {
                 user:localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            // this.getUser(accessToken, username);
         }
     }
 
@@ -48,6 +49,7 @@ class MainView extends React.Component {
         this.setState({
             user: authData.user.Username
         });
+        // this.props.setUser(authData.user)
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         localStorage.setItem("favMovies",JSON.stringify(authData.user.FavoriteMovies))
@@ -88,7 +90,7 @@ class MainView extends React.Component {
                            // If there is no user, the LoginView is rendered. If there is a user logged in, the user details are 
                            //passed as a prop to the LoginView
                            if(!user) return <Col>
-                           <LoginView onLoggedIn={user => this.onLoggedIn(user)}/>
+                           <LoginView onLoggedIn={this.onLoggedIn(user).bind(this)}/>
                            </Col>
                            //Before the movies have been loaded
                            if(movies.length === 0) return <div className="main-view"/>

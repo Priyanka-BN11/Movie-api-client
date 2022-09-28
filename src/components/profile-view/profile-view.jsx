@@ -36,10 +36,11 @@ import './favorite-movie.scss';
            
    
     }
-    
+
+   
 
 
-    // const handleUpdate = (e) => {
+    // const handleUpdate = e => {
   
     //     axios.put(`https://movie-app-priya.herokuapp.com/users/${Username}`,
     //     {
