@@ -34,8 +34,8 @@ export function RegistrationView(){
             setValues({...values, passwordErr:'Password Required'});
             isReq=false;
         }
-        else if(password.length > 6){
-            setValues({...values, passwordErr: 'Password must be 6 characters long' });
+        else if(password.length < 6){
+            setValues({...values, passwordErr: 'Password must be atleast 6 characters long' });
             isReq=false;
         }
         if(!email){
